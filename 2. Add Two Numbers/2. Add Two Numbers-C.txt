@@ -1,0 +1,43 @@
+/* struct ListNode {
+      int val;
+      struct ListNode *next;
+  };
+ */
+
+
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){  
+    struct ListNode* ansptr = NULL;
+    struct ListNode* curptr = ansptr; 
+    struct ListNode* newptr = NULL; 
+    struct ListNode* cur1 = l1;
+    struct ListNode* cur2 = l2;
+    int c=0,ch=0,val1,val2,sum;
+    
+     while(cur1!=NULL||cur2!=NULL||c==1){
+         val1=0;val2=0;
+         
+         if(cur1!=NULL){
+             val1=cur1->val;
+             cur1=cur1->next;
+         }
+         if(cur2!=NULL){
+             val2=cur2->val;
+             cur2=cur2->next;
+         }
+         sum=c+val1+val2;
+         c=sum/10;
+         curptr = (struct ListNode *) malloc(sizeof(struct ListNode)); 
+         curptr->val=sum%10;
+         curptr->next=NULL;
+          if(ch==NULL){
+              ansptr=curptr;
+          }
+         else{
+             newptr->next=curptr;
+         }
+         newptr=curptr;
+         ch++;
+     }
+    return ansptr;
+
+}

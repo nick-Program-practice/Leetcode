@@ -1,0 +1,48 @@
+class Solution 
+{
+    public String longestPalindrome(String s) 
+    {
+        
+        if (s.length() <= 1 || "".equals(s)) 
+        {
+            return s;
+        }
+        
+        int len=s.length();
+        int left,right,maxlen=0,nowlen=0;
+        String ans = "";
+    
+      
+        for (int i = 1; i < len; i++) 
+        {
+            //odd string
+            left=i-1;
+            right=i+1;
+            nowlen=1;
+            while((left>=0&&right<len) && (s.charAt(left)==s.charAt(right))){
+                nowlen+=2;
+                left--;
+                right++;
+            }
+            if(maxlen<nowlen){
+                ans=s.substring(left+1, left+nowlen+1);
+                maxlen=nowlen;
+            }
+            
+            //even string
+            left=i-1;
+            right=i;
+            nowlen=0;
+            while((left>=0&&right<len) && (s.charAt(left)==s.charAt(right))){
+                nowlen+=2;
+                left--;
+                right++;
+            }
+            if(maxlen<nowlen){
+                ans=s.substring(left+1, left+nowlen+1);
+                maxlen=nowlen;
+            }
+        }
+        return ans;
+    }
+}
